@@ -18,6 +18,7 @@ class App extends Component {
     this.getProfile();
   }
 
+  // Function to get Profile data and setState
   getProfile = () => {
     API.getProfile(1)
       .then(results => {

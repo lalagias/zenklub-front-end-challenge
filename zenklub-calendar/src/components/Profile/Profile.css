@@ -1,0 +1,43 @@
+.avatar-profile {
+  vertical-align: middle;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.name-profile {
+  font-weight: 600;
+  color: black;
+  font-size: 1.2rem;
+}
+
+.job-profile {
+  color: lightskyblue;
+  text-transform: uppercase;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.location-profile {
+  color: gray;
+  font-size: 0.8rem;
+  text-transform: none;
+}
+
+.price-profile {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: black;
+}
+
+.session-profile {
+  font-weight: 600;
+  font-size: 0.8rem;
+  color: gray;
+  text-transform: uppercase;
+}
+
+.description-profile {
+  color: darkgray;
+  font-weight: 500;
+}
