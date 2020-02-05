@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import Profile from "./components/Profile";
-import Scheduler from "./components/Scheduler";
+import Profile from "./components/Profile/Profile";
+import Scheduler from "./components/Scheduler/Scheduler";
 import "./App.css";
 
 class App extends Component {
