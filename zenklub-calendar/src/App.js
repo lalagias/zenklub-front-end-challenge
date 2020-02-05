@@ -1,6 +1,9 @@
 import React, { Component } from "react";
+import { Container, Row, Col } from "react-bootstrap";
+
 import Profile from "./components/Profile/Profile";
 import Scheduler from "./components/Scheduler/Scheduler";
+import API from "./utils/API";
 import "./App.css";
 
 class App extends Component {
@@ -10,13 +13,36 @@ class App extends Component {
     scheduler: {}
   };
 
+  // Invoke function when component render
+  componentDidMount() {
+    this.getProfile();
+  }
+
+  getProfile = () => {
+    API.getProfile(1)
+      .then(results => {
+        let profile = results.data;
+        this.setState({ profile }, () => {
+          console.log(this.state);
+        });
+      })
+      .catch(error => {
+        if (error) throw error;
+      });
+  };
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header"></header>
-        <Profile />
-        <Scheduler />
-      </div>
+      <Container className="App">
+        <Row>
+          <Col sm={6}>
+            <Profile profile={this.state.profile} />
+          </Col>
+          <Col sm={6}>
+            <Scheduler />
+          </Col>
+        </Row>
+      </Container>
     );
   }
 }
