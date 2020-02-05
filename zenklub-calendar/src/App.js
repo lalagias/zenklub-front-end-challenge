@@ -4,6 +4,12 @@ import Scheduler from "./components/Scheduler";
 import "./App.css";
 
 class App extends Component {
+  state = {
+    // Holds all information regarding the profile and the scheduler
+    profile: {},
+    scheduler: {}
+  };
+
   render() {
     return (
       <div className="App">
