@@ -1,4 +1,29 @@
 .scheduler-title {
-    color: white;
-    background-color: #0066CC;
+	color: white;
+	background-color: #0066cc;
+	text-align: center;
+}
+
+.dates-scheduler {
+	background-color: white;
+	-webkit-box-shadow: -1px 11px 13px 0px rgba(153, 153, 153, 1);
+	-moz-box-shadow: -1px 11px 13px 0px rgba(153, 153, 153, 1);
+	box-shadow: -1px 11px 13px 0px rgba(153, 153, 153, 1);
+	align-items: center;
+}
+
+.date-title {
+	color: gray;
+	text-align: center;
+}
+
+.appointments {
+	background-color: white;
+	-webkit-box-shadow: -1px 11px 13px 0px rgba(153, 153, 153, 1);
+	-moz-box-shadow: -1px 11px 13px 0px rgba(153, 153, 153, 1);
+	box-shadow: -1px 11px 13px 0px rgba(153, 153, 153, 1);
+}
+
+.appointment-available {
+	background-color: gray;
 }

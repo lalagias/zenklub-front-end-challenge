@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Container, Row, Col } from "react-bootstrap";
+import { format, addDays } from "date-fns";
 
 import Profile from "./components/Profile/Profile";
 import Scheduler from "./components/Scheduler/Scheduler";
@@ -12,13 +13,22 @@ class App extends Component {
 		profile: {
 			id: 1
 		},
-		dates: {}
+		dates: {},
+		// holds the current date each time the app is rendered
+		currentDate: new Date(),
+		// for the purpose of the task, this property is the last day of the scheduler
+		selectedDate: {},
+		// Working hours of doctor, with 1 hour appointments (meaning 8 appointments)
+		startingHour: 9,
+		endingHour: 17
 	};
 
 	// Invoke function when component render
 	componentDidMount() {
 		this.getProfile();
 		this.getDates();
+		this.setSelectedDate();
+		// this.renderDays();
 	}
 
 	// Function to get Profile data and setState
@@ -35,6 +45,7 @@ class App extends Component {
 			});
 	};
 
+	// Function to get Unavaible Dates & Time of doctor
 	getDates = () => {
 		API.getDates()
 			.then((results) => {
@@ -47,15 +58,41 @@ class App extends Component {
 				if (error) throw error;
 			});
 	};
+
+	// Add 30 days from current date and change state
+	setSelectedDate = () => {
+		let selectedDate = addDays(this.state.currentDate, 4);
+		this.setState({ selectedDate }, console.log(selectedDate));
+	};
+
+	// Render the days
+	renderDays = () => {
+		const dateFormat = "EEE LL LLL";
+		// let currentDateAbbr = format(this.state.currentDate, dateFormat);
+		// let selectedDate = format(this.state.currentDate, dateFormat);
+		// this.setState({ currentDateAbbr });
+		// console.log(currentDateAbbr);
+		let dates = [];
+
+		while (this.state.currentDate < this.state.selectedDate) {
+			let i = 1;
+			let date = addDays(this.state.currentDate, i);
+			dates.push(date);
+			i++;
+		}
+
+		this.setState({ dates });
+	};
+
 	render() {
 		return (
-			<Container className="App">
+			<Container className="App mt-5">
 				<Row>
 					<Col sm={6}>
 						<Profile profile={this.state.profile} />
 					</Col>
 					<Col sm={6}>
-						<Scheduler />
+						<Scheduler renderDays={this.renderDays} dates={this.state.dates} />
 					</Col>
 				</Row>
 			</Container>
