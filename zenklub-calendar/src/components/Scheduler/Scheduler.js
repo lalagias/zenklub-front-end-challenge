@@ -38,13 +38,29 @@ function Scheduler(props) {
 		}
 	}
 
+	// function loadMoreSlots() {
+	// 	console.log("EDWWWWWWWWW");
+	// }
+
 	// function to render available times
 	function renderSlots() {
-		const slots = props.workingHours.map((hour) => {
-			return <button className="time-slot mr-3 mt-3">{hour}</button>;
-		});
-
-		return <Col lg={2}>{slots}</Col>;
+		const slots = props.workingHours
+			.slice(0, props.visibleSlots)
+			.map((hour) => {
+				return <button className="time-slot mr-3 mt-3">{hour}</button>;
+			});
+		if (props.visibleSlots === 5) {
+			return (
+				<Col lg={2}>
+					{slots}
+					<button className="time-slot mr-3 mt-3" onClick={props.loadSlots}>
+						MORE
+					</button>
+				</Col>
+			);
+		} else {
+			return <Col lg={2}>{slots}</Col>;
+		}
 	}
 
 	return (

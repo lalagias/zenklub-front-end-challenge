@@ -23,27 +23,27 @@ class App extends Component {
 		// startingHour: 9,
 		// endingHour: 17,
 		workingHours: [
-			9,
-			9.3,
-			10,
-			10.3,
-			11,
-			11.3,
-			12,
-			12.3,
-			13,
-			13.3,
-			14,
-			14.3,
-			15,
-			15.3,
-			16,
-			16.3
+			"09:00",
+			"09:30",
+			"10:00",
+			"10:30",
+			"11:00",
+			"11:30",
+			"12:00",
+			"12:30",
+			"13:00",
+			"13:30",
+			"14:00",
+			"14:30",
+			"15:00",
+			"15:30",
+			"16:00",
+			"16:30"
 		],
 		// How many dates should be visible
 		visibleDates: 4,
-		// How many slots should be visible (default 6 -> more button will display the whole list of slots)
-		visibleSlots: 6
+		// How many slots should be visible (default 5 -> more button will display the whole list of slots)
+		visibleSlots: 5
 	};
 
 	// Invoke function when component render
@@ -74,7 +74,7 @@ class App extends Component {
 			.then((results) => {
 				let unavailableDates = results.data;
 				this.setState({ unavailableDates }, () => {
-					console.log(this.state.unavailableDates);
+					console.log("EDW", this.state.unavailableDates);
 				});
 			})
 			.catch((error) => {
@@ -109,6 +109,11 @@ class App extends Component {
 		}
 	};
 
+	// Function to load the whole slot list
+	loadSlots = () => {
+		this.setState({ visibleSlots: 16 });
+	};
+
 	render() {
 		return (
 			<Container className="App mt-5">
@@ -126,6 +131,7 @@ class App extends Component {
 							visibleSlots={this.state.visibleSlots}
 							loadNextDates={this.loadNextDates}
 							loadPrevDates={this.loadPrevDates}
+							loadSlots={this.loadSlots}
 						/>
 					</Col>
 				</Row>
