@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Container, Row, Col } from "react-bootstrap";
-import { addDays } from "date-fns";
+import { addDays, isValid, eachDayOfInterval } from "date-fns";
 
 import Profile from "./components/Profile/Profile";
 import Scheduler from "./components/Scheduler/Scheduler";
@@ -51,7 +51,6 @@ class App extends Component {
 		this.getProfile();
 		this.getDates();
 		this.setSelectedDate();
-		console.log(this.state);
 	}
 
 	// Function to get Profile data and setState
@@ -85,7 +84,7 @@ class App extends Component {
 	// Add 30 days from current date and change state
 	setSelectedDate = () => {
 		let selectedDate = addDays(this.state.currentDate, 29);
-		this.setState({ selectedDate });
+		this.setState({ selectedDate }, () => this.setDates());
 	};
 
 	// Functions to render more dates
@@ -113,6 +112,31 @@ class App extends Component {
 	loadSlots = () => {
 		this.setState({ visibleSlots: 16 });
 	};
+
+	// set dates
+	setDates = () => {
+		if (isValid(this.state.currentDate) && isValid(this.state.selectedDate)) {
+			// returns each day of date range
+			const daysInterval = eachDayOfInterval({
+				start: this.state.currentDate,
+				end: this.state.selectedDate
+			});
+			let workingHours = [...this.state.workingHours];
+			let dates = [];
+			daysInterval.forEach((day) => {
+				let newObj = {};
+				newObj.date = day;
+				newObj.time = workingHours;
+				console.log(newObj);
+				dates.push(newObj);
+			});
+
+			this.setState({ dates });
+		}
+	};
+
+	// remove unavailable dates
+	removeSlots = () => {};
 
 	render() {
 		return (
