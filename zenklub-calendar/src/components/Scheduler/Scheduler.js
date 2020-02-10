@@ -12,7 +12,7 @@ function Scheduler(props) {
 	function renderDays() {
 		console.log("renderDays");
 		// date formatter
-		const dateFormat = "EEE LL LLL";
+		const dateFormat = "EEE dd LLL";
 
 		// check if date is valid
 		if (isValid(props.currentDate) && isValid(props.selectedDate)) {
@@ -23,13 +23,15 @@ function Scheduler(props) {
 			});
 
 			// format days and change them to DOM elements
-			const days = daysInterval.map((day) => {
-				return (
-					<Col lg={2} className="date-title mr-3">
-						{format(day, dateFormat)}
-					</Col>
-				);
-			});
+			const days = daysInterval
+				.slice(props.visibleDates - 4, props.visibleDates)
+				.map((day) => {
+					return (
+						<Col lg={2} className="date-title">
+							{format(day, dateFormat)}
+						</Col>
+					);
+				});
 
 			// used React.Fragment to remove excess div wrapping
 			return <React.Fragment>{days}</React.Fragment>;
@@ -39,17 +41,11 @@ function Scheduler(props) {
 	// function to render available times
 	function renderSlots() {
 		const slots = props.workingHours.map((hour) => {
-			return <a className="time-slot mr-3 mt-3">{hour}</a>;
+			return <button className="time-slot mr-3 mt-3">{hour}</button>;
 		});
 
 		return <Col lg={2}>{slots}</Col>;
 	}
-
-	// function to render next dates
-	function nextDays() {}
-
-	// function to render previous dates
-	function previousDays() {}
 
 	return (
 		<Container fluid>
@@ -61,118 +57,21 @@ function Scheduler(props) {
 			</Row>
 
 			<Row className="dates-scheduler pt-3 pb-3">
-				<Col lg={1}>
-					<button className="arrow-btn arrow-left"></button>
+				<Col lg={2}>
+					<button
+						className="arrow-btn arrow-left"
+						onClick={props.loadPrevDates}></button>
 				</Col>
 
 				{renderDays()}
 
-				<Col lg={1}>
-					<button className="arrow-btn arrow-right"></button>
+				<Col lg={2}>
+					<button
+						className="arrow-btn arrow-right"
+						onClick={props.loadNextDates}></button>
 				</Col>
 			</Row>
-
-			<Row className="appointments mt-5">
-				{renderSlots()}
-				<Col lg={1}></Col>
-				<Col lg={2} className="mr-3 mt-3">
-					<a className="time-slot">8:30</a>
-				</Col>
-				<Col lg={2} className="mr-3 mt-3">
-					<a className="time-slot">8:30</a>
-				</Col>
-				<Col lg={2} className="mr-3 mt-3">
-					<a className="time-slot">8:30</a>
-				</Col>
-				<Col lg={2} className="mr-3 mt-3">
-					<a className="time-slot">8:30</a>
-				</Col>
-				<Col lg={1}></Col>
-				<Col lg={1}></Col>
-				<Col lg={2} className="mr-3 mt-3">
-					<a className="time-slot">8:30</a>
-				</Col>
-				<Col lg={2} className="mr-3 mt-3">
-					<a className="time-slot">8:30</a>
-				</Col>
-				<Col lg={2} className="mr-3 mt-3">
-					<a className="time-slot">8:30</a>
-				</Col>
-				<Col lg={2} className="mr-3 mt-3">
-					<a className="time-slot">8:30</a>
-				</Col>
-				<Col lg={1}></Col>
-				<Col lg={1}></Col>
-				<Col lg={2} className="mr-3 mt-3">
-					<a className="time-slot">8:30</a>
-				</Col>
-				<Col lg={2} className="mr-3 mt-3">
-					<a className="time-slot">8:30</a>
-				</Col>
-				<Col lg={2} className="mr-3 mt-3">
-					<a className="time-slot">8:30</a>
-				</Col>
-				<Col lg={2} className="mr-3 mt-3">
-					<a className="time-slot">8:30</a>
-				</Col>
-				<Col lg={1}></Col>
-				<Col lg={1}></Col>
-				<Col lg={2} className="mr-3 mt-3">
-					<a className="time-slot">8:30</a>
-				</Col>
-				<Col lg={2} className="mr-3 mt-3">
-					<a className="time-slot">8:30</a>
-				</Col>
-				<Col lg={2} className="mr-3 mt-3">
-					<a className="time-slot">8:30</a>
-				</Col>
-				<Col lg={2} className="mr-3 mt-3">
-					<a className="time-slot">8:30</a>
-				</Col>
-				<Col lg={1}></Col>
-				<Col lg={1}></Col>
-				<Col lg={2} className="mr-3 mt-3">
-					<a className="time-slot">8:30</a>
-				</Col>
-				<Col lg={2} className="mr-3 mt-3">
-					<a className="time-slot">8:30</a>
-				</Col>
-				<Col lg={2} className="mr-3 mt-3">
-					<a className="time-slot">8:30</a>
-				</Col>
-				<Col lg={2} className="mr-3 mt-3">
-					<a className="time-slot">8:30</a>
-				</Col>
-				<Col lg={1}></Col>
-				<Col lg={1}></Col>
-				<Col lg={2} className="mr-3 mt-3">
-					<a className="time-slot">8:30</a>
-				</Col>
-				<Col lg={2} className="mr-3 mt-3">
-					<a className="time-slot">8:30</a>
-				</Col>
-				<Col lg={2} className="mr-3 mt-3">
-					<a className="time-slot">8:30</a>
-				</Col>
-				<Col lg={2} className="mr-3 mt-3">
-					<a className="time-slot">8:30</a>
-				</Col>
-				<Col lg={1}></Col>
-				<Col lg={1}></Col>
-				<Col lg={2} className="mr-3 mt-3">
-					<a className="time-slot">MORE</a>
-				</Col>
-				<Col lg={2} className="mr-3 mt-3">
-					<a className="time-slot">MORE</a>
-				</Col>
-				<Col lg={2} className="mr-3 mt-3">
-					<a className="time-slot">MORE</a>
-				</Col>
-				<Col lg={2} className="mr-3 mt-3">
-					<a className="time-slot">MORE</a>
-				</Col>
-				<Col lg={1}></Col>
-			</Row>
+			<Row className="appointments mt-5 pb-3 ">{renderSlots()}</Row>
 		</Container>
 	);
 }

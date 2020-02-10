@@ -35,12 +35,20 @@
 }
 
 .arrow-btn {
-	background-color: gray;
+	background-color: darkgray;
 	display: inline-block;
 	width: 2.5rem;
 	height: 2.5rem;
 	border: 0 solid transparent;
 	border-radius: 50%;
+}
+
+.arrow-btn:hover {
+	background-color: gray;
+}
+
+.arrow-btn:focus {
+	outline: none !important;
 }
 
 .arrow-btn:after {
