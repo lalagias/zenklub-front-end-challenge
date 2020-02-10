@@ -38,10 +38,6 @@ function Scheduler(props) {
 		}
 	}
 
-	// function loadMoreSlots() {
-	// 	console.log("EDWWWWWWWWW");
-	// }
-
 	// function to render available times
 	function renderSlots() {
 		const slots = props.workingHours
@@ -78,7 +74,6 @@ function Scheduler(props) {
 						className="arrow-btn arrow-left"
 						onClick={props.loadPrevDates}></button>
 				</Col>
-
 				{renderDays()}
 
 				<Col lg={2}>
@@ -87,7 +82,14 @@ function Scheduler(props) {
 						onClick={props.loadNextDates}></button>
 				</Col>
 			</Row>
-			<Row className="appointments mt-5 pb-3 ">{renderSlots()}</Row>
+			<Row className="appointments mt-5 pb-3 ">
+				<Col lg={2}></Col>
+				{renderSlots()}
+				{renderSlots()}
+				{renderSlots()}
+				{renderSlots()}
+				<Col lg={2}></Col>
+			</Row>
 		</Container>
 	);
 }
