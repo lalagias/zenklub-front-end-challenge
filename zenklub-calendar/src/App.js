@@ -20,8 +20,27 @@ class App extends Component {
 		// for the purpose of the task, this property is the last day of the scheduler
 		selectedDate: null,
 		// Working hours of doctor, with 30 minute appointments (meaning 16 appointments)
-		startingHour: 9,
-		endingHour: 17
+		// startingHour: 9,
+		// endingHour: 17,
+		workingHours: [
+			"9",
+			"9:30",
+			"10",
+			"10:30",
+			"11",
+			"11:30",
+			"12",
+			"12:30",
+			"13",
+			"13:30",
+			"14",
+			"14:30",
+			"15",
+			"15:30",
+			"16",
+			"16:30",
+			"17"
+		]
 	};
 
 	// Invoke function when component render
@@ -79,6 +98,7 @@ class App extends Component {
 							dates={this.state.dates}
 							currentDate={this.state.currentDate}
 							selectedDate={this.state.selectedDate}
+							workingHours={this.state.workingHours}
 						/>
 					</Col>
 				</Row>

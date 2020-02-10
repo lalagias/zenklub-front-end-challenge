@@ -18,6 +18,7 @@
 }
 
 .appointments {
+	text-align: center;
 	background-color: white;
 	-webkit-box-shadow: -1px 11px 13px 0px rgba(153, 153, 153, 1);
 	-moz-box-shadow: -1px 11px 13px 0px rgba(153, 153, 153, 1);
@@ -26,4 +27,52 @@
 
 .appointment-available {
 	background-color: gray;
+}
+
+.radius-btn {
+	border-radius: 50%;
+	background-color: gray;
+}
+
+.arrow-btn {
+	background-color: gray;
+	display: inline-block;
+	width: 2.5rem;
+	height: 2.5rem;
+	border: 0 solid transparent;
+	border-radius: 50%;
+}
+
+.arrow-btn:after {
+	vertical-align: center;
+	content: "";
+	display: inline-block;
+	width: 1rem;
+	height: 1rem;
+	border-top: 0.4rem solid white;
+	border-right: 0.4rem solid white;
+}
+
+.arrow-left:after {
+	margin-top: 0.4rem;
+	margin-left: 0.4rem;
+	-moz-transform: rotate(-135deg);
+	-webkit-transform: rotate(-135deg);
+	transform: rotate(-135deg);
+}
+
+.arrow-right:after {
+	margin-top: 0.4rem;
+	margin-right: 0.4rem;
+	-moz-transform: rotate(45deg);
+	-webkit-transform: rotate(45deg);
+	transform: rotate(45deg);
+}
+
+.time-slot {
+	background-color: gray;
+	color: white !important;
+	font-weight: 600;
+	padding: 0.3rem 0.5rem;
+	border-radius: 10%;
 }

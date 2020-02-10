@@ -7,7 +7,6 @@ import "./Scheduler.css";
 function Scheduler(props) {
 	console.log("props scheduler", props);
 	console.log(isValid(props.selectedDate));
-	let days;
 
 	// function to render days
 	function renderDays() {
@@ -24,7 +23,7 @@ function Scheduler(props) {
 			});
 
 			// format days and change them to DOM elements
-			let days = daysInterval.map((day) => {
+			const days = daysInterval.map((day) => {
 				return (
 					<Col lg={2} className="date-title mr-3">
 						{format(day, dateFormat)}
@@ -56,35 +55,117 @@ function Scheduler(props) {
 			</Row>
 
 			<Row className="dates-scheduler">
-				<Col lg={1} className="">
-					<button className="arrow left"></button>
+				<Col lg={1}>
+					<button className="arrow-btn arrow-left"></button>
 				</Col>
+
 				{renderDays()}
-				{/* {days} */}
-
-				{/* <Col lg={2} className="date-title mr-3">
-					<p>MON 10 Feb</p>
-				</Col>
-
-				<Col lg={2} className="date-title mr-3">
-					<p>TUE 11 Feb</p>
-				</Col>
-
-				<Col lg={2} className="date-title mr-3">
-					<p>WED 12 Feb</p>
-				</Col>
-
-				<Col lg={2} className="date-title mr-3">
-					<p>THU 13 Feb</p>
-				</Col> */}
 
 				<Col lg={1}>
-					<button className="arrow-right"></button>
+					<button className="arrow-btn arrow-right"></button>
 				</Col>
 			</Row>
 
-			<Row className="appointments">
-				<Col></Col>
+			<Row className="appointments mt-5">
+				{renderSlots()}
+				<Col lg={1}></Col>
+				<Col lg={2} className="mr-3 mt-3">
+					<a className="time-slot">8:30</a>
+				</Col>
+				<Col lg={2} className="mr-3 mt-3">
+					<a className="time-slot">8:30</a>
+				</Col>
+				<Col lg={2} className="mr-3 mt-3">
+					<a className="time-slot">8:30</a>
+				</Col>
+				<Col lg={2} className="mr-3 mt-3">
+					<a className="time-slot">8:30</a>
+				</Col>
+				<Col lg={1}></Col>
+				<Col lg={1}></Col>
+				<Col lg={2} className="mr-3 mt-3">
+					<a className="time-slot">8:30</a>
+				</Col>
+				<Col lg={2} className="mr-3 mt-3">
+					<a className="time-slot">8:30</a>
+				</Col>
+				<Col lg={2} className="mr-3 mt-3">
+					<a className="time-slot">8:30</a>
+				</Col>
+				<Col lg={2} className="mr-3 mt-3">
+					<a className="time-slot">8:30</a>
+				</Col>
+				<Col lg={1}></Col>
+				<Col lg={1}></Col>
+				<Col lg={2} className="mr-3 mt-3">
+					<a className="time-slot">8:30</a>
+				</Col>
+				<Col lg={2} className="mr-3 mt-3">
+					<a className="time-slot">8:30</a>
+				</Col>
+				<Col lg={2} className="mr-3 mt-3">
+					<a className="time-slot">8:30</a>
+				</Col>
+				<Col lg={2} className="mr-3 mt-3">
+					<a className="time-slot">8:30</a>
+				</Col>
+				<Col lg={1}></Col>
+				<Col lg={1}></Col>
+				<Col lg={2} className="mr-3 mt-3">
+					<a className="time-slot">8:30</a>
+				</Col>
+				<Col lg={2} className="mr-3 mt-3">
+					<a className="time-slot">8:30</a>
+				</Col>
+				<Col lg={2} className="mr-3 mt-3">
+					<a className="time-slot">8:30</a>
+				</Col>
+				<Col lg={2} className="mr-3 mt-3">
+					<a className="time-slot">8:30</a>
+				</Col>
+				<Col lg={1}></Col>
+				<Col lg={1}></Col>
+				<Col lg={2} className="mr-3 mt-3">
+					<a className="time-slot">8:30</a>
+				</Col>
+				<Col lg={2} className="mr-3 mt-3">
+					<a className="time-slot">8:30</a>
+				</Col>
+				<Col lg={2} className="mr-3 mt-3">
+					<a className="time-slot">8:30</a>
+				</Col>
+				<Col lg={2} className="mr-3 mt-3">
+					<a className="time-slot">8:30</a>
+				</Col>
+				<Col lg={1}></Col>
+				<Col lg={1}></Col>
+				<Col lg={2} className="mr-3 mt-3">
+					<a className="time-slot">8:30</a>
+				</Col>
+				<Col lg={2} className="mr-3 mt-3">
+					<a className="time-slot">8:30</a>
+				</Col>
+				<Col lg={2} className="mr-3 mt-3">
+					<a className="time-slot">8:30</a>
+				</Col>
+				<Col lg={2} className="mr-3 mt-3">
+					<a className="time-slot">8:30</a>
+				</Col>
+				<Col lg={1}></Col>
+				<Col lg={1}></Col>
+				<Col lg={2} className="mr-3 mt-3">
+					<a className="time-slot">MORE</a>
+				</Col>
+				<Col lg={2} className="mr-3 mt-3">
+					<a className="time-slot">MORE</a>
+				</Col>
+				<Col lg={2} className="mr-3 mt-3">
+					<a className="time-slot">MORE</a>
+				</Col>
+				<Col lg={2} className="mr-3 mt-3">
+					<a className="time-slot">MORE</a>
+				</Col>
+				<Col lg={1}></Col>
 			</Row>
 		</Container>
 	);
