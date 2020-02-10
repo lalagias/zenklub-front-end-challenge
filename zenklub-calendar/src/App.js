@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Container, Row, Col } from "react-bootstrap";
-import { addDays, isValid, eachDayOfInterval } from "date-fns";
+import { addDays, isValid, eachDayOfInterval, parse, isEqual } from "date-fns";
 
 import Profile from "./components/Profile/Profile";
 import Scheduler from "./components/Scheduler/Scheduler";
@@ -13,8 +13,8 @@ class App extends Component {
 		profile: {
 			id: 1
 		},
-		unavailableDates: {},
-		dates: {},
+		unavailableDates: [],
+		dates: [],
 		// holds the current date each time the app is rendered
 		currentDate: new Date(),
 		// for the purpose of the task, this property is the last day of the scheduler
@@ -59,7 +59,7 @@ class App extends Component {
 			.then((results) => {
 				let profile = results.data;
 				this.setState({ profile }, () => {
-					console.log(this.state);
+					// console.log(this.state);
 				});
 			})
 			.catch((error) => {
@@ -73,7 +73,11 @@ class App extends Component {
 			.then((results) => {
 				let unavailableDates = results.data;
 				this.setState({ unavailableDates }, () => {
-					console.log("EDW", this.state.unavailableDates);
+					// console.log(
+					// 	"this.state.unavailableDates",
+					// 	this.state.unavailableDates
+					// );
+					this.removeSlots();
 				});
 			})
 			.catch((error) => {
@@ -92,8 +96,8 @@ class App extends Component {
 		this.setState(
 			(prev) => {
 				return { visibleDates: prev.visibleDates + 4 };
-			},
-			() => console.log(this.state.visibleDates)
+			}
+			// () => console.log(this.state.visibleDates)
 		);
 	};
 
@@ -102,8 +106,8 @@ class App extends Component {
 			this.setState(
 				(prev) => {
 					return { visibleDates: prev.visibleDates - 4 };
-				},
-				() => console.log(this.state.visibleDates)
+				}
+				// () => console.log(this.state.visibleDates)
 			);
 		}
 	};
@@ -121,24 +125,51 @@ class App extends Component {
 				start: this.state.currentDate,
 				end: this.state.selectedDate
 			});
-			let workingHours = [...this.state.workingHours];
+			// let workingHours = [...this.state.workingHours];
 			let dates = [];
 			daysInterval.forEach((day) => {
 				let newObj = {};
 				newObj.date = day;
-				newObj.time = workingHours;
-				console.log(newObj);
+				newObj.time = [...this.state.workingHours];
+				// console.log(newObj);
 				dates.push(newObj);
 			});
 
-			this.setState({ dates });
+			this.setState({ dates }, () => {
+				console.log(this.state.dates);
+				this.removeSlots();
+			});
 		}
 	};
 
 	// remove unavailable dates
-	removeSlots = () => {};
+	removeSlots = () => {
+		console.log("REMOVED SLOTS");
+		let parsedDate, foundDate;
+		let newDateList = [...this.state.dates];
+		this.state.unavailableDates.forEach((slot) => {
+			parsedDate = parse(slot.date, "dd.MM.yyyy", new Date());
+
+			// find dateIndex
+			const dateIndex = this.state.dates.findIndex((date) => {
+				foundDate = isEqual(date.date, parsedDate);
+				return foundDate;
+			});
+
+			// find timeIndex
+			const timeIndex = newDateList[dateIndex].time.indexOf(slot.time);
+
+			// if timeIndex is found remove it from the available hours
+			if (timeIndex !== -1) {
+				newDateList[dateIndex].time[timeIndex] = "-";
+				// .splice(timeIndex, 1);
+			}
+		});
+		this.setState({ dates: newDateList }, () => console.log(this.state.dates));
+	};
 
 	render() {
+		// console.log(this.state);
 		return (
 			<Container className="App mt-5">
 				<Row>

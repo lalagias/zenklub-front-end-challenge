@@ -78,6 +78,7 @@
 }
 
 .time-slot {
+	width: 4rem !important;
 	background-color: gray;
 	color: white !important;
 	font-weight: 600;
