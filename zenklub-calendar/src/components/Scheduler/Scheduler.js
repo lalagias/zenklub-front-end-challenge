@@ -37,7 +37,13 @@ function Scheduler(props) {
 	}
 
 	// function to render available times
-	function renderSlots() {}
+	function renderSlots() {
+		const slots = props.workingHours.map((hour) => {
+			return <a className="time-slot mr-3 mt-3">{hour}</a>;
+		});
+
+		return <Col lg={2}>{slots}</Col>;
+	}
 
 	// function to render next dates
 	function nextDays() {}
@@ -49,12 +55,12 @@ function Scheduler(props) {
 		<Container fluid>
 			<Row className="scheduler-title">
 				<Col lg={12}>
-					<h5> Schedule your session! </h5>
-					<p> Timezone: Lisbon(+1) </p>
+					<h5 className="mt-2"> Schedule your session! </h5>
+					<p className="mt-1 mb-2"> Timezone: Lisbon(+1) </p>
 				</Col>
 			</Row>
 
-			<Row className="dates-scheduler">
+			<Row className="dates-scheduler pt-3 pb-3">
 				<Col lg={1}>
 					<button className="arrow-btn arrow-left"></button>
 				</Col>
