@@ -159,7 +159,7 @@ class App extends Component {
 			// find timeIndex
 			const timeIndex = newDateList[dateIndex].time.indexOf(slot.time);
 
-			// if timeIndex is found remove it from the available hours
+			// if timeIndex is found replace it w/ '-'
 			if (timeIndex !== -1) {
 				newDateList[dateIndex].time[timeIndex] = "-";
 				// .splice(timeIndex, 1);
